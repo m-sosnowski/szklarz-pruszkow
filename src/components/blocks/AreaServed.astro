@@ -1,0 +1,27 @@
+---
+import Section from './Section.astro';
+import { site } from '../../lib/globals';
+
+/**
+ * Lista miejscowości, do których firma dojeżdża. Źródłem jest `site.yml`,
+ * ten sam, z którego bierze się `areaServed` w JSON-LD — dzięki temu
+ * treść widoczna dla klienta i dane dla wyszukiwarki nie mogą się rozjechać.
+ */
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, ...section } = Astro.props;
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+  <ul class="area reveal">
+    {site.areaServed.map((area) => <li>{area.name}</li>)}
+  </ul>
+</Section>

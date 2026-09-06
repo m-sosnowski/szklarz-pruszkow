@@ -1,0 +1,43 @@
+# Menu główne i stopka. Kolejność i nazwy 1:1 z oryginałem
+# (O firmie · Oferta · Usługi szklarskie · Oprawa obrazów · Piaskowanie · Kontakt),
+# żeby stali klienci nie musieli uczyć się serwisu od nowa.
+main:
+  - label: O firmie
+    href: /
+  - label: Oferta
+    href: /oferta
+  - label: Usługi szklarskie
+    href: /uslugi-szklarskie
+  - label: Oprawa obrazów
+    href: /oprawa-obrazow
+  - label: Piaskowanie
+    href: /piaskowanie
+  - label: Kontakt
+    href: /kontakt
+footer:
+  - heading: Oferta
+    links:
+      - label: Usługi szklarskie
+        href: /uslugi-szklarskie
+      - label: Oprawa obrazów
+        href: /oprawa-obrazow
+      - label: Piaskowanie szkła
+        href: /piaskowanie
+      - label: Pełna oferta
+        href: /oferta
+  - heading: Co wykonujemy
+    links:
+      - label: Kabiny prysznicowe
+        href: /uslugi-szklarskie#kabiny
+      - label: Szkło do kuchni
+        href: /uslugi-szklarskie#kuchnia
+      - label: Lustra na wymiar
+        href: /uslugi-szklarskie#lustra
+      - label: Balustrady szklane
+        href: /uslugi-szklarskie#balustrady
+  - heading: Firma
+    links:
+      - label: O firmie
+        href: /
+      - label: Kontakt
+        href: /kontakt

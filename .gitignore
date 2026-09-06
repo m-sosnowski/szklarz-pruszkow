@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.env
+.env.production
+.DS_Store
+npm-debug.log*
+
+# Zdjęcia ściągnięte ze starego serwisu to backup roboczy, nie źródło prawdy.
+# Do repo trafiają dopiero warianty przepuszczone przez optimize-images.
+data/raw-images/
+data/contact-sheets/
+
+# Bundle CMS-a jest kopiowany z node_modules w kroku prebuild.
+public/admin/sveltia-cms.js
+public/admin/sveltia-cms.js.map
+
+# Gotowe fragmenty YAML generowane przez optimize-images — wygoda przy
+# redakcji, ale treść jest już w data/gallery.json i w src/content/pages/.
+data/gallery-yaml.md

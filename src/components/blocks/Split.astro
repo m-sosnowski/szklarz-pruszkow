@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import Section from './Section.astro';
+import Icon from '../ui/Icon.astro';
+import { renderMarkdown } from '../../lib/markdown';
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading: string;
+  body?: string | undefined;
+  image?: ImageMetadata | undefined;
+  imageAlt?: string | undefined;
+  reverse?: boolean;
+  checks?: string[];
+  buttons?: { label: string; href: string }[];
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const {
+  eyebrow,
+  heading,
+  body,
+  image,
+  imageAlt,
+  reverse = false,
+  checks = [],
+  buttons = [],
+  ...section
+} = Astro.props;
+---
+
+<Section {...section}>
+  <div class:list={['split', reverse && 'split--reverse']}>
+    <div class="reveal">
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <h2>{heading}</h2>
+      {body && <div class="prose" set:html={renderMarkdown(body)} />}
+
+      {
+        checks.length > 0 && (
+          <ul class="checks">
+            {checks.map((item) => (
+              <li>
+                <Icon name="check" size={17} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      {
+        buttons.length > 0 && (
+          <div class="btn-row">
+            {buttons.map((button, index) => (
+              <a class:list={['btn', index === 0 ? 'btn--primary' : 'btn--ghost']} href={button.href}>
+                {button.label}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    {
+      image && (
+        <div class="split__media reveal">
+          <Image
+            src={image}
+            alt={imageAlt ?? ''}
+            widths={[480, 760, 1100]}
+            sizes="(max-width: 720px) 92vw, 46vw"
+            loading="lazy"
+          />
+        </div>
+      )
+    }
+  </div>
+</Section>

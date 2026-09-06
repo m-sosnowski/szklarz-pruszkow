@@ -1,0 +1,55 @@
+---
+/**
+ * Warstwa tła dla ciemnych sekcji: ukośne pasma światła załamanego w szkle.
+ *
+ * Zamiast zdjęcia w tle — zdjęcia ze starego serwisu mają 800 px na dłuższym
+ * boku i rozjeżdżają się na pełnej szerokości ekranu. Rysunek wektorowy
+ * skaluje się bez końca, waży tyle co nic i nie konkuruje z tekstem
+ * o uwagę tak jak fotografia.
+ */
+
+import { uid } from '../../lib/uid';
+
+interface Props {
+  class?: string;
+  /** Odbicie w poziomie — żeby ten sam rysunek nie powtarzał się identycznie. */
+  flip?: boolean;
+}
+
+const { class: className, flip = false } = Astro.props;
+const id = uid('refr');
+---
+
+<svg
+  class={className}
+  viewBox="0 0 1200 600"
+  preserveAspectRatio="xMidYMid slice"
+  fill="none"
+  aria-hidden="true"
+  style={flip ? 'transform: scaleX(-1)' : undefined}
+>
+  <defs>
+    <linearGradient id={`${id}-a`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7fd9e8" stop-opacity=".16" />
+      <stop offset="60%" stop-color="#16bfa6" stop-opacity=".05" />
+      <stop offset="100%" stop-color="#16bfa6" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id={`${id}-b`} x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#16bfa6" stop-opacity=".1" />
+      <stop offset="100%" stop-color="#7fd9e8" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- pasma tafli -->
+  <path d="M620 -60 900 -60 560 660 280 660z" fill={`url(#${id}-a)`} />
+  <path d="M880 -60 1010 -60 690 660 560 660z" fill={`url(#${id}-b)`} />
+  <path d="M1080 -60 1260 -60 940 660 760 660z" fill={`url(#${id}-a)`} />
+
+  <!-- krawędzie: cienkie linie, jak brzeg szlifowanego szkła -->
+  <g stroke="#7fd9e8" stroke-opacity=".22" stroke-width="1">
+    <path d="M620 -60 280 660" />
+    <path d="M900 -60 560 660" />
+    <path d="M1010 -60 690 660" />
+    <path d="M1260 -60 940 660" />
+  </g>
+</svg>

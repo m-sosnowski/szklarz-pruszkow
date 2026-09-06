@@ -1,0 +1,45 @@
+# Nagłówki Cloudflare Pages.
+#
+# Wyjątki w CSP dotyczą dwóch rzeczy: panelu /admin (Sveltia CMS) i wysyłki
+# formularza kontaktowego. Wszystkie dotyczą pobierania danych i zasobów,
+# nie wykonywania kodu — `script-src` zostaje przy 'self', więc skrypty nadal
+# mogą pochodzić wyłącznie z naszego serwera.
+#
+# - unpkg.com w `connect-src`: bundle Sveltii zawiera tylko en-US, resztę
+#   tłumaczeń (u nas pl.json) dociąga fetchem z
+#   https://unpkg.com/@sveltia/cms@<wersja>/locales/. Bez tego panel wisi
+#   w nieskończoność na spinnerze, a błąd widać wyłącznie w konsoli.
+# - cdn.jsdelivr.net w `font-src`: fonty interfejsu panelu, w tym Material
+#   Symbols. Bez nich ikony renderują się jako gołe słowa („menu", „close").
+# - data: w `connect-src`: Sveltia czyta własne logo (data: URI) fetchem.
+# - githubstatus.com: panel ostrzega o awarii GitHuba. Zapytanie jest
+#   w try/catch, więc brak zgody tylko wycisza ostrzeżenie.
+# - api.web3forms.com w `connect-src` i `form-action`: tam trafia formularz
+#   kontaktowy. Oba wpisy są potrzebne — fetch przy działającym JS,
+#   zwykły POST formularza jako zapas.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; manifest-src 'self' blob:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' data: https://api.github.com https://unpkg.com https://www.githubstatus.com https://api.web3forms.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com
+
+# Assety Astro mają hash w nazwie — mogą leżeć w cache na zawsze.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML zawsze rewalidowany, żeby publikacja z CMS-a była widoczna od razu.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Panel CMS nie ma czego szukać w indeksie. Dwie reguły, bo /admin/*
+# nie dopasowuje samego /admin.
+/admin
+  X-Robots-Tag: noindex, nofollow
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow

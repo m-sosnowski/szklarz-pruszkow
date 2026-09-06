@@ -1,0 +1,23 @@
+---
+import { site } from '../../lib/globals';
+import Icon from '../ui/Icon.astro';
+
+/**
+ * Pasek kontaktu przyklejony do dołu ekranu na telefonach.
+ *
+ * Klient szukający szklarza dzwoni — nie wypełnia formularza. Na małym
+ * ekranie numer musi być pod kciukiem na każdej podstronie, bez przewijania
+ * do stopki. Stopka ma pod niego zarezerwowany padding (patrz global.css).
+ */
+---
+
+<div class="callbar">
+  <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+    <Icon name="phone" size={17} />
+    {site.phone}
+  </a>
+  <a class="btn btn--light" href="/kontakt" aria-label="Przejdź do strony kontaktu">
+    <Icon name="mail" size={17} />
+    Napisz
+  </a>
+</div>

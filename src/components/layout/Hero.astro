@@ -1,0 +1,127 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../ui/Icon.astro';
+import Refraction from '../ui/Refraction.astro';
+
+/**
+ * Hero strony głównej: asymetryczny podział 58/42.
+ *
+ * Po lewej tekst na gradiencie petrol z warstwą refrakcji, po prawej kolaż
+ * trzech kadrów przesuniętych względem siebie — jak tafle oparte o stojak
+ * w zakładzie. Świadomie bez zdjęcia na pełną szerokość: materiał ze starego
+ * serwisu ma 800 px na dłuższym boku i rozjechałby się na dużym ekranie.
+ */
+
+interface Link {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading: string;
+  subheading?: string | undefined;
+  ctaPrimary?: Link | undefined;
+  ctaSecondary?: Link | undefined;
+  stats?: { value: string; label: string }[];
+  collage?: { src: ImageMetadata; alt: string }[];
+}
+
+const {
+  eyebrow,
+  heading,
+  subheading,
+  ctaPrimary,
+  ctaSecondary,
+  stats = [],
+  collage = [],
+} = Astro.props;
+
+// Kolaż jest zbudowany na trzech kadrach — czwarty i kolejne nie mają
+// gdzie się zmieścić w siatce.
+const frames = collage.slice(0, 3);
+---
+
+<section class="hero">
+  <Refraction class="hero__refraction" />
+
+  <div class="container hero__inner">
+    <div>
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <h1>{heading}</h1>
+      {subheading && <p class="hero__lead">{subheading}</p>}
+
+      {
+        (ctaPrimary || ctaSecondary) && (
+          <div class="btn-row">
+            {ctaPrimary && (
+              <a class="btn btn--primary" href={ctaPrimary.href}>
+                <Icon name="phone" size={17} />
+                {ctaPrimary.label}
+              </a>
+            )}
+            {ctaSecondary && (
+              <a class="btn btn--light" href={ctaSecondary.href}>
+                {ctaSecondary.label}
+                <Icon name="arrowRight" size={17} />
+              </a>
+            )}
+          </div>
+        )
+      }
+
+      {
+        stats.length > 0 && (
+          <dl class="hero__stats">
+            {stats.map((item) => (
+              <div class="hero__stat">
+                <dt class="sr-only">{item.label}</dt>
+                <dd>
+                  <b>{item.value}</b>
+                  <span>{item.label}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+    </div>
+
+    {
+      frames.length > 0 && (
+        <div class="hero__collage">
+          {frames.map((frame, index) => (
+            <figure>
+              <Image
+                src={frame.src}
+                alt={frame.alt}
+                widths={[320, 520, 760]}
+                sizes="(max-width: 940px) 45vw, 22vw"
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : undefined}
+              />
+            </figure>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  /* Etykieta statystyki jest już w <span>; <dt> istnieje tylko po to,
+     żeby lista opisowa była poprawna semantycznie. */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .hero__stats dd {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import { SITE_URL, type ResolvedSeo } from '../../lib/seo';
+import { site } from '../../lib/globals';
+
+interface Props {
+  seo: ResolvedSeo;
+  /** `article` dla realizacji i wpisów, `website` dla stron ofertowych. */
+  ogType?: 'website' | 'article' | 'product';
+}
+
+const { seo, ogType = 'website' } = Astro.props;
+
+const ogImage = seo.ogImage
+  ? new URL(seo.ogImage, SITE_URL).href
+  : new URL('/og/default.png', SITE_URL).href;
+
+/**
+ * Preview deploymenty Cloudflare (`*.pages.dev`) nie mogą konkurować
+ * z produkcją w indeksie — wszystko poza gałęzią `main` dostaje noindex.
+ */
+const isPreviewBuild =
+  import.meta.env.CF_PAGES_BRANCH !== undefined && import.meta.env.CF_PAGES_BRANCH !== 'main';
+const noindex = seo.noindex || isPreviewBuild;
+---
+
+<title>{seo.title}</title>
+<meta name="description" content={seo.description} />
+<link rel="canonical" href={seo.canonical} />
+
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+{!noindex && <meta name="robots" content="index, follow, max-image-preview:large" />}
+{seo.keywords.length > 0 && <meta name="keywords" content={seo.keywords.join(', ')} />}
+
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={site.companyName} />
+<meta property="og:locale" content="pl_PL" />
+<meta property="og:title" content={seo.title} />
+<meta property="og:description" content={seo.description} />
+<meta property="og:url" content={seo.canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={seo.title} />
+<meta name="twitter:description" content={seo.description} />
+<meta name="twitter:image" content={ogImage} />

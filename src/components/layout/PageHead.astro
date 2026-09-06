@@ -1,0 +1,52 @@
+---
+import Icon from '../ui/Icon.astro';
+import Refraction from '../ui/Refraction.astro';
+import type { Crumb } from '../../lib/schema';
+
+/**
+ * Nagłówek podstrony. Ten sam gradient co hero, tylko niższy i bez kolażu —
+ * żeby podstrony czytały się jak ciąg dalszy strony głównej, a nie jak
+ * osobny serwis.
+ */
+
+interface Props {
+  title: string;
+  lead?: string | undefined;
+  eyebrow?: string | undefined;
+  crumbs?: Crumb[];
+}
+
+const { title, lead, eyebrow, crumbs = [] } = Astro.props;
+
+// Ostatni okruszek to bieżąca strona — nie linkujemy do samego siebie.
+const trail = crumbs.length > 1 ? crumbs : [];
+---
+
+<section class="pagehead">
+  <Refraction class="pagehead__refraction" flip />
+
+  <div class="container">
+    <div class="pagehead__inner">
+      {
+        trail.length > 0 && (
+          <nav class="crumbs" aria-label="Ścieżka nawigacji">
+            {trail.map((crumb, index) =>
+              index === trail.length - 1 ? (
+                <span aria-current="page">{crumb.name}</span>
+              ) : (
+                <>
+                  <a href={crumb.href}>{crumb.name}</a>
+                  <Icon name="chevronRight" size={13} />
+                </>
+              ),
+            )}
+          </nav>
+        )
+      }
+
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+    </div>
+  </div>
+</section>

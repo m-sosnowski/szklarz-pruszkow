@@ -1,0 +1,42 @@
+---
+/**
+ * Sygnet: dwie tafle szkła ustawione pod kątem, z rozświetloną krawędzią.
+ * Rysowany, a nie wgrywany jako plik — dzięki temu skaluje się bez utraty
+ * ostrości, waży kilkaset bajtów i przejmuje kolor z otoczenia.
+ *
+ * Stary logotyp był GIF-em 200×90 px w bordo i czerwieni; nie miał jak
+ * współistnieć z petrolem, a w nagłówku i tak renderował się nieostro.
+ */
+
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 34, class: className } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 34 34"
+  fill="none"
+  class={className}
+  aria-hidden="true"
+>
+  <!-- tafla tylna -->
+  <path
+    d="M13 3h18l-5 28H8z"
+    fill="currentColor"
+    opacity=".18"
+  />
+  <!-- tafla przednia, z akwamarynową krawędzią -->
+  <path
+    d="M3 3h18l-5 28H8z"
+    stroke="var(--accent, #16bfa6)"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+  <!-- refleks światła na powierzchni -->
+  <path d="M9 8h5l-3 18H8z" fill="var(--accent, #16bfa6)" opacity=".3" />
+</svg>

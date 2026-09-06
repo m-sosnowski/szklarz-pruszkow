@@ -1,0 +1,57 @@
+---
+import { navigation, site } from '../../lib/globals';
+import Icon from '../ui/Icon.astro';
+
+/**
+ * Menu mobilne. Pełnoekranowe, wysuwane z góry — obsługa i zamykanie
+ * są w src/scripts/site.ts.
+ */
+
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+
+function isCurrent(href: string): boolean {
+  return href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
+}
+
+const address = site.address;
+---
+
+{/* Bez atrybutu `hidden` — zamknięta szuflada jest chowana przez
+    `visibility: hidden` w CSS, co wycina ją z kolejności tabulacji i z drzewa
+    dostępności, a przy tym zostawia działającą animację wysuwania. */}
+<div class="drawer" id="menu-mobilne">
+  <nav aria-label="Menu mobilne">
+    {
+      navigation.main.map((item) => (
+        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="drawer__meta">
+    <a href={`tel:${site.phoneHref}`}>
+      <Icon name="phone" size={17} />
+      {site.phone}
+    </a>
+    <a href={`mailto:${site.email}`}>
+      <Icon name="mail" size={17} />
+      {site.email}
+    </a>
+    {
+      address?.publicOffice && (
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            `${address.street}, ${address.postalCode} ${address.city}`,
+          )}`}
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="pin" size={17} />
+          {address.street}, {address.city}
+        </a>
+      )
+    }
+  </div>
+</div>

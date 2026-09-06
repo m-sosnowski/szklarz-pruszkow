@@ -1,0 +1,32 @@
+---
+import Section from './Section.astro';
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  rows: { name: string; value: string }[];
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, rows, ...section } = Astro.props;
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} narrow {...section}>
+  <div class="spec-wrap reveal">
+    <table class="spec">
+      <tbody>
+        {
+          rows.map((row) => (
+            <tr>
+              <th scope="row">{row.name}</th>
+              <td>{row.value}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Section>

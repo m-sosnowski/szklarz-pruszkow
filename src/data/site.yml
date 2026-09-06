@@ -1,0 +1,55 @@
+# Dane firmy. Edytowalne z panelu /admin (kolekcja „Ustawienia serwisu").
+# Wszystkie wartości poza oznaczonymi TODO pochodzą wprost ze starej strony
+# (podstrona /kontakt/ i tekst „O firmie").
+companyName: SZKLARZ
+legalName: Usługi Szklarskie Tomasz Sosnowski
+tagline: Usługi szklarskie, oprawa obrazów i piaskowanie szkła — Pruszków
+contactPerson: Tomasz Sosnowski
+phone: "602 230 068"
+phoneHref: "+48602230068"
+# Numer WhatsApp w formacie międzynarodowym. Puste = link wa.me użyje phoneHref.
+whatsapp: ""
+email: piaskowanie@wp.pl
+# Klucz dostępu Web3Forms (panel web3forms.com). Jawny z założenia — trafia
+# do HTML formularza. Puste = formularz otwiera program pocztowy.
+web3formsKey: ""
+nip: "" # TODO: NIP do JSON-LD (vatID) i do stopki
+foundedYear: 1985
+address:
+  street: ul. Andrzeja 26
+  city: Pruszków
+  postalCode: 05-803
+  region: mazowieckie
+  country: PL
+  # true = zakład stacjonarny z adresem otwartym dla klientów. Steruje tym,
+  # czy renderujemy pełny adres pocztowy i czy trafia on do JSON-LD.
+  publicOffice: true
+openingHours:
+  - days: Poniedziałek – Piątek
+    hours: 10:00 – 17:00
+priceRange: "$$"
+# Zasięg dojazdu z tekstu „O firmie" oryginału — podstawa dla areaServed
+# w JSON-LD i dla sekcji „Gdzie pracujemy".
+areaServed:
+  - name: Pruszków
+  - name: Piastów
+  - name: Brwinów
+  - name: Warszawa Ursus
+  - name: Ożarów Mazowiecki
+  - name: Grodzisk Mazowiecki
+  - name: Podkowa Leśna
+  - name: Milanówek
+  - name: Nadarzyn
+  - name: Duchnice
+  - name: Domaniew
+  - name: Ołtarzew
+  - name: Babice
+  - name: Warszawa
+services:
+  - name: Usługi szklarskie
+    href: /uslugi-szklarskie
+  - name: Oprawa obrazów i luster
+    href: /oprawa-obrazow
+  - name: Piaskowanie szkła i płyt nagrobnych
+    href: /piaskowanie
+social: []

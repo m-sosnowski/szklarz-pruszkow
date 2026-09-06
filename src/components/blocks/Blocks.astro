@@ -1,0 +1,196 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import RichText from './RichText.astro';
+import ValueCards from './ValueCards.astro';
+import OfferCards from './OfferCards.astro';
+import Split from './Split.astro';
+import Steps from './Steps.astro';
+import Stats from './Stats.astro';
+import Chips from './Chips.astro';
+import ImageGallery from './ImageGallery.astro';
+import SpecTable from './SpecTable.astro';
+import Faq from './Faq.astro';
+import AreaServed from './AreaServed.astro';
+import Cta from './Cta.astro';
+import Contact from './Contact.astro';
+
+type Block = CollectionEntry<'pages'>['data']['blocks'][number];
+
+interface Props {
+  blocks: Block[];
+}
+
+const { blocks } = Astro.props;
+
+/**
+ * Dyspozytor bloków. `type` z frontmatteru wybiera komponent — ten sam
+ * zbiór nazw, który waliduje `discriminatedUnion` w content.config.ts
+ * i który oferuje panel w config.yml. Zgodności całej trójki pilnuje
+ * scripts/check-cms-schema.ts.
+ */
+---
+
+{
+  blocks.map((block) => {
+    switch (block.type) {
+      case 'richText':
+        return (
+          <RichText
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            body={block.body}
+            variant={block.variant}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'valueCards':
+        return (
+          <ValueCards
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            items={block.items}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'offerCards':
+        return (
+          <OfferCards
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            items={block.items}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'split':
+        return (
+          <Split
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            body={block.body}
+            image={block.image}
+            imageAlt={block.imageAlt}
+            reverse={block.reverse}
+            checks={block.checks}
+            buttons={block.buttons}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'steps':
+        return (
+          <Steps
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            items={block.items}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'stats':
+        return (
+          <Stats
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            items={block.items}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'chips':
+        return (
+          <Chips
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            groups={block.groups}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'imageGallery':
+        return (
+          <ImageGallery
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            columns={block.columns}
+            images={block.images}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'specTable':
+        return (
+          <SpecTable
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            rows={block.rows}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'faq':
+        return (
+          <Faq
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            items={block.items}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'areaServed':
+        return (
+          <AreaServed
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'cta':
+        return (
+          <Cta
+            heading={block.heading}
+            body={block.body}
+            primary={block.primary}
+            secondary={block.secondary}
+          />
+        );
+      case 'contact':
+        return (
+          <Contact
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            endpoint={block.endpoint}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+    }
+  })
+}

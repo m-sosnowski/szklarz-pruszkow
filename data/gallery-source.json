@@ -1,0 +1,632 @@
+{
+  "uslugi": [
+    {
+      "file": "data/raw-images/uslugi/001-a12.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/a12.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/002-img_0056.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0056.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/003-img_0061.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0061.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/004-img_0057.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0057.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/005-img_1174.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_1174.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/006-img_0054.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0054.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/007-a22.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/a22.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/008-ck.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/ck.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/009-faza_1.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/faza_1.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/010-img_0050.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0050.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/011-img_0051.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0051.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/012-a18.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/a18.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/013-img_1181.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_1181.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/014-img_3411.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_3411.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/015-img_4294.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4294.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/016-img_4296.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4296.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/017-img_4297.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4297.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/018-img_4297_1.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4297_1.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/019-img_4301.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4301.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/020-img_4309.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4309.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/021-img_4310.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4310.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/022-img_4314.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4314.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/023-img_4316.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4316.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/024-img_4317.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4317.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/025-img_4318.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4318.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/026-img_4330.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4330.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/027-img_5678.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5678.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/028-img_5682.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5682.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/029-img_5684.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5684.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/030-img_5688.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5688.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/031-img_5689.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5689.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/032-img_5690.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5690.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/033-img_5693.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5693.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/034-img_5695.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5695.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/035-img_5696.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_5696.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/036-img_6868_1.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_6868_1.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/037-img_20180223_160717.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_20180223_160717.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/038-img_20180223_160724.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_20180223_160724.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/039-img_20180604_161639.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_20180604_161639.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/040-img_20180604_161723.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_20180604_161723.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/041-img_20180614_121501.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_20180614_121501.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/042-kopia_2_wp_20140204_008.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/kopia_2_wp_20140204_008.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/043-kopia_2_wp_20140204_011.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/kopia_2_wp_20140204_011.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/044-kopia_wp_20140204_007.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/kopia_wp_20140204_007.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/045-kopia_wp_20140204_010.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/kopia_wp_20140204_010.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/046-mar_8466.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/mar_8466.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/047-mar_8468.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/mar_8468.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/048-obraz_014.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_014.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/049-obraz_017.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_017.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/050-obraz_227.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_227.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/051-obraz_228.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_228.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/052-obraz_231.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_231.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/053-obraz_234.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_234.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/054-obraz_235.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_235.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/055-obraz_236.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_236.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/056-wp_20140318_001.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140318_001.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/057-wp_20140318_004.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140318_004.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/058-wp_20140517_001.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140517_001.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/059-wp_20140517_003.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140517_003.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/060-wp_20140517_004.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140517_004.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/061-wp_20140614_005.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140614_005.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/062-wp_20140614_006.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140614_006.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/063-wp_20140614_007.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140614_007.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/064-zdjecie0131.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0131.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/065-zdjecie0168.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0168.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/066-zdjecie0185.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0185.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/067-images_1.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/images_1.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/068-20161121_173644-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/20161121_173644-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/069-20161121_173654-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/20161121_173654-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/070-20161121_173659-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/20161121_173659-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/071-20170421_135846-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/20170421_135846-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/072-img_5693-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_5693-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/073-img_5695-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_5695-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/074-img_20180612_143739-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20180612_143739-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/075-img_20180614_173949-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20180614_173949-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/076-img_20180615_101151-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20180615_101151-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/077-img_20190108_180153-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190108_180153-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/078-img_20190108_180202-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190108_180202-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/079-img_20190108_180323-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190108_180323-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/080-img_20190108_205839-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190108_205839-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/081-img_20190313_130926-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190313_130926-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/082-img_20190313_130957-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190313_130957-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/083-img_20190313_131007-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190313_131007-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/084-img_20190313_131010-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190313_131010-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/085-img_20190529_110145-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190529_110145-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/086-img_20190529_110216-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190529_110216-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/087-img_20190530_191302-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190530_191302-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/088-img_20190530_191351-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190530_191351-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/089-img_20190601_085114-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190601_085114-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/090-img_20190903_155138-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190903_155138-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/091-img_20190903_155155-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190903_155155-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/092-img_20191025_114536-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20191025_114536-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/093-img_20191025_114604-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20191025_114604-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/094-img-20200831-wa0006.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG-20200831-WA0006.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/095-img-20200831-wa0007.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG-20200831-WA0007.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/096-obraz-014-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Obraz-014-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/097-obraz-017-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Obraz-017-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/098-zdjecie0131.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Zdjecie0131.jpg"
+    },
+    {
+      "file": "data/raw-images/uslugi/099-zdjecie0168.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Zdjecie0168.jpg"
+    }
+  ],
+  "oprawa": [
+    {
+      "file": "data/raw-images/oprawa/001-img_0027.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0027.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/002-img_3604.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_3604.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/003-img_0013.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0013.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/004-img_0028.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0028.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/005-obraz_051.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_051.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/006-img_3594.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_3594.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/007-obraz_048.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_048.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/008-obraz_050.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_050.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/009-obraz_052.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_052.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/010-obraz_053.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_053.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/011-img_0037.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0037.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/012-obraz_054.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_054.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/013-obraz_055.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_055.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/014-zdjecie0042.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0042.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/015-zdjecie0043.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0043.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/016-zdjecie0044.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0044.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/017-zdjecie0046.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0046.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/018-zdjecie0047.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0047.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/019-zdjecie0048.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0048.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/020-img_3665.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_3665.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/021-zdjecie0175.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0175.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/022-zdjecie0180.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0180.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/023-zdjecie0186.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0186.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/024-zdjecie0187.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0187.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/025-zdjecie0193.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0193.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/026-20170421_140607-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/20170421_140607-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/027-img_20190304_110703-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190304_110703-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/028-img_20190307_112520-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_20190307_112520-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/029-zdjecie0175.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Zdjecie0175.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/030-zdjecie0180.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Zdjecie0180.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/031-zdjecie0186.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Zdjecie0186.jpg"
+    },
+    {
+      "file": "data/raw-images/oprawa/032-zdjecie0187.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Zdjecie0187.jpg"
+    }
+  ],
+  "piaskowanie": [
+    {
+      "file": "data/raw-images/piaskowanie/001-img_0071.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_0071.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/002-img_3566.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_3566.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/003-img_3572.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_3572.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/004-img_3574.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_3574.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/005-img_4438.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4438.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/006-img_4561.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4561.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/007-img_4564.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_4564.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/008-img_7314.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_7314.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/009-img_7318.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_7318.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/010-img_20180226_142337.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/img_20180226_142337.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/011-obraz_011.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/obraz_011.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/012-wp_20140403_002.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140403_002.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/013-wp_20140424_004.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/wp_20140424_004.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/014-zdjecie0179.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0179.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/015-zdjecie0199.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0199.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/016-zdjecie0294.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0294.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/017-zdjecie0409.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0409.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/018-zdjecie0412.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0412.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/019-zdjecie0413.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2022/03/zdjecie0413.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/020-img_2124-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_2124-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/021-img_2127-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_2127-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/022-img_2128-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_2128-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/023-img_2130-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_2130-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/024-img_4161-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/IMG_4161-scaled.jpg"
+    },
+    {
+      "file": "data/raw-images/piaskowanie/025-obraz-011-scaled.jpg",
+      "origin": "https://szklarz.pruszkow.pl/wp-content/uploads/2024/03/Obraz-011-scaled.jpg"
+    }
+  ]
+}

@@ -1,0 +1,584 @@
+# Konfiguracja panelu Sveltia CMS.
+#
+# Ten plik opisuje ten sam model treści co src/content.config.ts, tylko dla
+# edytora. Rozjazd między nimi wyłapuje scripts/check-cms-schema.ts w CI —
+# jeśli dodajesz pole tutaj, dodaj je też tam (i odwrotnie).
+
+backend:
+  name: github
+  repo: m-sosnowski/szklarz-pruszkow
+  branch: main
+  # Bez `base_url` — logowanie odbywa się przez „Sign In with Token"
+  # (Personal Access Token GitHuba), więc nie ma serwera OAuth do utrzymania.
+
+# Tryb lokalny: `npm run dev`, wejście na localhost:4321/admin i edycja
+# zapisuje wprost do plików na dysku, bez commitów.
+local_backend: true
+
+publish_mode: simple
+
+# Media muszą lądować w src/assets/, żeby przeszły przez astro:assets
+# (AVIF/WebP + srcset). W public/ byłyby kopiowane bez zmian.
+#
+# public_folder musi być ścieżką absolutną — Sveltia odrzuca względne.
+# Astro rozwiązuje ją resolverem Vite od katalogu projektu (a nie z public/),
+# więc zdjęcie i tak trafia do pipeline'u optymalizacji.
+#
+# Wskazuje na katalog nadrzędny, a nie na podfolder „uploads", bo 156 zdjęć
+# z migracji leży w uslugi/, oprawa/ i piaskowanie/ — dzięki temu biblioteka
+# mediów je widzi, zamiast zgłaszać „Nie znaleziono plików".
+media_folder: src/assets/images
+public_folder: /src/assets/images
+
+locale: pl
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+
+# --------------------------------------------------------------------------
+# Fragmenty współdzielone przez kolekcje
+# --------------------------------------------------------------------------
+
+seo_field: &seo_field
+  label: SEO
+  name: seo
+  widget: object
+  collapsed: true
+  fields:
+    - label: Tytuł w Google (maks. 60 znaków)
+      name: metaTitle
+      widget: string
+      required: false
+      hint: Puste = tytuł strony + „SZKLARZ Pruszków".
+    - label: Opis w Google (50–170 znaków)
+      name: metaDescription
+      widget: text
+      required: false
+      hint: To zdanie widzi klient w wynikach wyszukiwania. Warto je napisać ręcznie.
+    - label: Obrazek do social media
+      name: ogImage
+      widget: image
+      required: false
+      hint: Puste = wspólny obrazek /og/default.png.
+    - label: Adres kanoniczny
+      name: canonical
+      widget: string
+      required: false
+      hint: Zostaw puste, chyba że ta treść ma oryginał pod innym adresem.
+    - label: Ukryj przed wyszukiwarkami
+      name: noindex
+      widget: boolean
+      default: false
+      required: false
+    - label: Słowa kluczowe
+      name: keywords
+      widget: list
+      required: false
+      default: []
+
+section_background: &section_background
+  label: Tło sekcji
+  name: background
+  widget: select
+  default: paper
+  options:
+    - { label: Białe, value: paper }
+    - { label: Jasnoszare, value: mist }
+    - { label: Ciemne, value: deep }
+    - { label: Ciemne ze szklaną poświatą, value: glass }
+
+section_tight: &section_tight
+  label: Mniejsze odstępy
+  name: tight
+  widget: boolean
+  default: false
+  required: false
+
+section_eyebrow: &section_eyebrow
+  label: Nadtytuł
+  name: eyebrow
+  widget: string
+  required: false
+  hint: Krótkie słowo nad nagłówkiem, np. „Realizacje".
+
+section_anchor: &section_anchor
+  label: Kotwica
+  name: anchor
+  widget: string
+  required: false
+  hint: Identyfikator do linkowania, np. „kabiny" da adres /uslugi-szklarskie#kabiny.
+
+icon_field: &icon_field
+  label: Ikona
+  name: icon
+  widget: select
+  default: shield
+  options:
+    - shower
+    - glass
+    - mirror
+    - frame
+    - sandblast
+    - kitchen
+    - stairs
+    - door
+    - ruler
+    - shield
+    - clock
+    - award
+    - users
+    - truck
+    - building
+    - wrench
+    - bolt
+    - lock
+    - phone
+    - mail
+    - pin
+    - arrowRight
+    - arrowLeft
+    - chevronDown
+    - chevronLeft
+    - chevronRight
+    - close
+    - menu
+    - zoom
+    - check
+
+link_fields: &link_fields
+  - { label: Napis, name: label, widget: string }
+  - { label: Adres, name: href, widget: string }
+
+image_with_alt: &image_with_alt
+  - { label: Zdjęcie, name: src, widget: image }
+  - label: Opis zdjęcia (alt)
+    name: alt
+    widget: string
+    hint: >-
+      Obowiązkowy. Opisz, co widać — to czyta czytnik ekranu i Google.
+      Bez opisu strona się nie zbuduje.
+
+# --------------------------------------------------------------------------
+# Bloki treści. Nazwa wariantu = wartość `type` w discriminatedUnion.
+# --------------------------------------------------------------------------
+
+blocks_field: &blocks_field
+  label: Sekcje strony
+  name: blocks
+  widget: list
+  types:
+    - label: Tekst
+      name: richText
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - { label: Treść, name: body, widget: markdown }
+        - label: Wygląd
+          name: variant
+          widget: select
+          default: prose
+          options:
+            - { label: Zwykły tekst, value: prose }
+            - { label: W ramce z akcentem, value: panel }
+
+    - label: Wyróżniki
+      name: valueCards
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Kafle
+          name: items
+          widget: list
+          fields:
+            - *icon_field
+            - { label: Tytuł, name: title, widget: string }
+            - { label: Opis, name: body, widget: text, required: false }
+
+    - label: Karty oferty
+      name: offerCards
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Karty
+          name: items
+          widget: list
+          fields:
+            - { label: Tytuł, name: title, widget: string }
+            - { label: Opis, name: body, widget: text, required: false }
+            - { label: Adres docelowy, name: href, widget: string, required: false }
+            - { label: Napis linku, name: linkLabel, widget: string, required: false }
+            - { label: Zdjęcie, name: image, widget: image, required: false }
+            - { label: Opis zdjęcia (alt), name: imageAlt, widget: string, required: false }
+
+    - label: Tekst ze zdjęciem
+      name: split
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string }
+        - { label: Treść, name: body, widget: markdown, required: false }
+        - { label: Zdjęcie, name: image, widget: image, required: false }
+        - { label: Opis zdjęcia (alt), name: imageAlt, widget: string, required: false }
+        - label: Zdjęcie po lewej
+          name: reverse
+          widget: boolean
+          default: false
+          required: false
+        - { label: Lista z ptaszkami, name: checks, widget: list, required: false, default: [] }
+        - label: Przyciski
+          name: buttons
+          widget: list
+          required: false
+          default: []
+          fields: *link_fields
+
+    - label: Kroki
+      name: steps
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Kroki
+          name: items
+          widget: list
+          fields:
+            - { label: Tytuł, name: title, widget: string }
+            - { label: Opis, name: body, widget: text }
+
+    - label: Liczby
+      name: stats
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Pozycje
+          name: items
+          widget: list
+          fields:
+            - { label: Liczba, name: value, widget: string }
+            - { label: Podpis, name: label, widget: string }
+
+    - label: Etykiety asortymentu
+      name: chips
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Grupy
+          name: groups
+          widget: list
+          fields:
+            - { label: Tytuł grupy, name: title, widget: string }
+            - { label: Etykiety, name: items, widget: list }
+
+    - label: Galeria zdjęć
+      name: imageGallery
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Liczba kolumn
+          name: columns
+          widget: select
+          default: '4'
+          options: ['2', '3', '4']
+        - label: Zdjęcia
+          name: images
+          widget: list
+          fields: *image_with_alt
+
+    - label: Tabela parametrów
+      name: specTable
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Wiersze
+          name: rows
+          widget: list
+          fields:
+            - { label: Nazwa, name: name, widget: string }
+            - { label: Wartość, name: value, widget: string }
+
+    - label: Pytania i odpowiedzi
+      name: faq
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Pytania
+          name: items
+          widget: list
+          hint: Te pytania trafiają też do danych strukturalnych FAQPage dla Google.
+          fields:
+            - { label: Pytanie, name: question, widget: string }
+            - { label: Odpowiedź, name: answer, widget: text }
+
+    - label: Zasięg działania
+      name: areaServed
+      widget: object
+      hint: Lista miejscowości pochodzi z „Ustawienia serwisu → Dane firmy".
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+
+    - label: Wezwanie do kontaktu
+      name: cta
+      widget: object
+      fields:
+        - { label: Nagłówek, name: heading, widget: string }
+        - { label: Treść, name: body, widget: text, required: false }
+        - label: Przycisk główny
+          name: primary
+          widget: object
+          required: false
+          fields: *link_fields
+        - label: Przycisk dodatkowy
+          name: secondary
+          widget: object
+          required: false
+          fields: *link_fields
+
+    - label: Kontakt i formularz
+      name: contact
+      widget: object
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Adres wysyłki formularza
+          name: endpoint
+          widget: string
+          required: false
+          default: ''
+          hint: >-
+            Puste = używamy klucza Web3Forms z ustawień serwisu. Jeśli i on jest pusty,
+            zamiast formularza pokazujemy panel z telefonem i e-mailem.
+
+# --------------------------------------------------------------------------
+# Kolekcje
+# --------------------------------------------------------------------------
+
+collections:
+  - name: pages
+    label: Strony
+    label_singular: Strona
+    folder: src/content/pages
+    create: true
+    slug: '{{fields.slug}}'
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: title
+    summary: '{{title}}'
+    sortable_fields: [order, title]
+    fields:
+      - { label: Tytuł, name: title, widget: string }
+      - label: Adres (slug)
+        name: slug
+        widget: string
+        required: false
+        hint: >-
+          Bez ukośnika na początku, np. „piaskowanie". Puste = strona główna.
+          UWAGA: zmiana adresu istniejącej strony psuje pozycję w Google —
+          trzeba wtedy dopisać przekierowanie w public/_redirects.
+      - { label: Szkic (niewidoczna na stronie), name: draft, widget: boolean, default: false }
+      - { label: Kolejność w menu, name: order, widget: number, default: 0, value_type: int }
+      - label: Krótki opis
+        name: summary
+        widget: text
+        required: false
+        hint: Używany jako zapasowy opis w Google i pod nagłówkiem podstrony.
+      - label: Nazwa usługi (dane strukturalne)
+        name: serviceName
+        widget: string
+        required: false
+        hint: >-
+          Wypełnij tylko na stronach opisujących jedną usługę. Trafia do danych
+          strukturalnych Service, które czyta Google.
+
+      - label: Nagłówek strony
+        name: hero
+        widget: object
+        required: false
+        fields:
+          - label: Rodzaj
+            name: variant
+            widget: select
+            default: page
+            options:
+              - { label: Duży (strona główna, z kolażem), value: home }
+              - { label: Zwykły (podstrona), value: page }
+          - *section_eyebrow
+          - { label: Nagłówek H1, name: heading, widget: string }
+          - { label: Podtytuł, name: subheading, widget: text, required: false }
+          - label: Przycisk główny
+            name: ctaPrimary
+            widget: object
+            required: false
+            fields: *link_fields
+          - label: Przycisk dodatkowy
+            name: ctaSecondary
+            widget: object
+            required: false
+            fields: *link_fields
+          - label: Liczby
+            name: stats
+            widget: list
+            required: false
+            default: []
+            fields:
+              - { label: Liczba, name: value, widget: string }
+              - { label: Podpis, name: label, widget: string }
+          - label: Kolaż zdjęć (3 sztuki)
+            name: collage
+            widget: list
+            required: false
+            default: []
+            max: 3
+            fields: *image_with_alt
+
+      - *blocks_field
+      - *seo_field
+
+  - name: settings
+    label: Ustawienia serwisu
+    files:
+      - name: site
+        label: Dane firmy
+        file: src/data/site.yml
+        fields:
+          - { label: Nazwa handlowa, name: companyName, widget: string }
+          - { label: Pełna nazwa firmy, name: legalName, widget: string, required: false }
+          - { label: Hasło firmy, name: tagline, widget: string }
+          - { label: Osoba kontaktowa, name: contactPerson, widget: string, required: false }
+          - { label: Telefon (do wyświetlenia), name: phone, widget: string }
+          - label: Telefon (do linku)
+            name: phoneHref
+            widget: string
+            hint: Format międzynarodowy bez spacji, np. +48602230068.
+          - { label: WhatsApp, name: whatsapp, widget: string, required: false }
+          - { label: E-mail, name: email, widget: string }
+          - label: Klucz Web3Forms
+            name: web3formsKey
+            widget: string
+            required: false
+            hint: >-
+              Darmowy klucz z web3forms.com. Bez niego formularz kontaktowy
+              nie jest pokazywany — zamiast niego widnieje panel z telefonem.
+          - { label: NIP, name: nip, widget: string, required: false }
+          - { label: Rok założenia, name: foundedYear, widget: number, required: false, value_type: int }
+          - label: Adres
+            name: address
+            widget: object
+            fields:
+              - { label: Ulica i numer, name: street, widget: string, required: false }
+              - { label: Miejscowość, name: city, widget: string }
+              - { label: Kod pocztowy, name: postalCode, widget: string, required: false }
+              - { label: Województwo, name: region, widget: string, required: false }
+              - { label: Kraj, name: country, widget: string, required: false }
+              - label: Zakład otwarty dla klientów
+                name: publicOffice
+                widget: boolean
+                default: true
+                hint: Wyłącz, jeśli adres ma zniknąć ze strony i z danych strukturalnych.
+          - label: Współrzędne
+            name: geo
+            widget: object
+            required: false
+            fields:
+              - { label: Szerokość, name: lat, widget: number, value_type: float }
+              - { label: Długość, name: lng, widget: number, value_type: float }
+          - label: Godziny otwarcia
+            name: openingHours
+            widget: list
+            fields:
+              - { label: Dni, name: days, widget: string }
+              - { label: Godziny, name: hours, widget: string }
+          - { label: Przedział cenowy, name: priceRange, widget: string, required: false }
+          - label: Zasięg działania
+            name: areaServed
+            widget: list
+            fields:
+              - { label: Miejscowość, name: name, widget: string }
+              - { label: Slug, name: slug, widget: string, required: false }
+          - label: Usługi
+            name: services
+            widget: list
+            fields:
+              - { label: Nazwa, name: name, widget: string }
+              - { label: Adres, name: href, widget: string, required: false }
+          - label: Profile społecznościowe
+            name: social
+            widget: list
+            required: false
+            default: []
+            fields: *link_fields
+
+      - name: navigation
+        label: Menu i stopka
+        file: src/data/navigation.yml
+        fields:
+          - label: Menu główne
+            name: main
+            widget: list
+            fields: *link_fields
+          - label: Kolumny stopki
+            name: footer
+            widget: list
+            fields:
+              - { label: Nagłówek kolumny, name: heading, widget: string }
+              - label: Linki
+                name: links
+                widget: list
+                fields: *link_fields

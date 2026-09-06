@@ -1,0 +1,45 @@
+---
+import Icon from '../ui/Icon.astro';
+import Refraction from '../ui/Refraction.astro';
+import { site } from '../../lib/globals';
+
+interface Props {
+  heading: string;
+  body?: string | undefined;
+  primary?: { label: string; href: string } | undefined;
+  secondary?: { label: string; href: string } | undefined;
+}
+
+const { heading, body, primary, secondary } = Astro.props;
+
+// Bez własnych przycisków blok i tak ma sens: domyślnie prowadzi na telefon,
+// bo to główna droga kontaktu z tą firmą.
+const first = primary ?? { label: site.phone, href: `tel:${site.phoneHref}` };
+const isCall = first.href.startsWith('tel:');
+---
+
+<section class="cta">
+  <Refraction class="cta__edge" />
+
+  <div class="container cta__inner">
+    <div class="reveal">
+      <h2>{heading}</h2>
+      {body && <p>{body}</p>}
+    </div>
+
+    <div class="btn-row reveal">
+      <a class="btn btn--primary" href={first.href}>
+        {isCall && <Icon name="phone" size={17} />}
+        {first.label}
+      </a>
+      {
+        secondary && (
+          <a class="btn btn--light" href={secondary.href}>
+            {secondary.label}
+            <Icon name="arrowRight" size={17} />
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

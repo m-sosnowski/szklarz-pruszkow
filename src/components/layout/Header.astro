@@ -1,0 +1,55 @@
+---
+import { navigation, site } from '../../lib/globals';
+import Icon from '../ui/Icon.astro';
+import Logo from '../ui/Logo.astro';
+
+/**
+ * Nagłówek: jeden ciemny pas, bez osobnego topbaru. Telefon jest przyciskiem,
+ * a nie linijką tekstu w rogu — 90% zleceń w tej firmie zaczyna się telefonem,
+ * więc numer ma być największym klikalnym elementem po nazwie firmy.
+ */
+
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+
+function isCurrent(href: string): boolean {
+  return href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
+}
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label={`${site.companyName} — strona główna`}>
+      <Logo size={34} />
+      <span class="brand__text">
+        <span class="brand__name">{site.companyName}</span>
+        <span class="brand__tag">{site.contactPerson}</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Menu główne">
+      {
+        navigation.main.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a class="header__call" href={`tel:${site.phoneHref}`}>
+      <Icon name="phone" size={17} />
+      <span>{site.phone}</span>
+    </a>
+
+    <button
+      class="burger"
+      type="button"
+      data-drawer-toggle
+      aria-expanded="false"
+      aria-controls="menu-mobilne"
+      aria-label="Otwórz menu"
+    >
+      <Icon name="menu" size={26} />
+    </button>
+  </div>
+</header>

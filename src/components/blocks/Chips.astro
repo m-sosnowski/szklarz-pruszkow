@@ -1,0 +1,37 @@
+---
+import Section from './Section.astro';
+
+/**
+ * Siatka etykiet asortymentu. Zastępuje wyliczenia, które w oryginale
+ * były jednym długim zdaniem oddzielanym przecinkami.
+ */
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  groups: { title: string; items: string[] }[];
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, groups, ...section } = Astro.props;
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+  <div class="chip-groups">
+    {
+      groups.map((group) => (
+        <div class="chip-group reveal">
+          <h3>{group.title}</h3>
+          <ul class="chips">
+            {group.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Section>

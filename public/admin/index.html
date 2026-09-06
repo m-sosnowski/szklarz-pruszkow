@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Panel treści — SZKLARZ Pruszków</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <!--
+      CMS ładowany z lokalnego node_modules (kopiowany do dist/ skryptem
+      `scripts/copy-cms.ts` w kroku prebuild), a nie z CDN — dzięki temu
+      polityka CSP nie musi otwierać zewnętrznego hosta, a panel działa
+      niezależnie od dostępności cudzego serwera.
+    -->
+    <script src="/admin/sveltia-cms.js" type="module"></script>
+  </body>
+</html>

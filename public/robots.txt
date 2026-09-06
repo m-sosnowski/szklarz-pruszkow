@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+
+Sitemap: https://szklarz.pruszkow.pl/sitemap-index.xml

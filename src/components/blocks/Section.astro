@@ -1,0 +1,59 @@
+---
+/**
+ * Otoczka każdego bloku-sekcji: tło, odstępy i nagłówek.
+ *
+ * Dzięki temu rytm strony (naprzemienne tła, ten sam eyebrow, ta sama
+ * odległość nagłówka od treści) jest ustawiony w jednym miejscu, a bloki
+ * zajmują się już tylko swoją zawartością.
+ */
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  center?: boolean;
+  narrow?: boolean;
+  anchor?: string | undefined;
+  class?: string | undefined;
+}
+
+const {
+  eyebrow,
+  heading,
+  intro,
+  background = 'paper',
+  tight = false,
+  center = false,
+  narrow = false,
+  anchor,
+  class: className,
+} = Astro.props;
+
+const hasHead = Boolean(eyebrow || heading || intro);
+---
+
+<section
+  id={anchor}
+  class:list={[
+    'section',
+    tight && 'section--tight',
+    background !== 'paper' && `section--${background}`,
+    className,
+  ]}
+>
+  <div class:list={['container', narrow && 'container-narrow']}>
+    {
+      hasHead && (
+        <div class:list={['section-head', center && 'is-center', 'reveal']}>
+          {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+          {heading && <h2>{heading}</h2>}
+          {intro && <p class="lead">{intro}</p>}
+        </div>
+      )
+    }
+
+    <slot />
+  </div>
+</section>

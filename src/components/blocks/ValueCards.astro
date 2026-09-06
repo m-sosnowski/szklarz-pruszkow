@@ -1,0 +1,40 @@
+---
+import Section from './Section.astro';
+import Icon from '../ui/Icon.astro';
+import type { IconName } from '../../lib/icons';
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  items: { icon: IconName; title: string; body?: string | undefined }[];
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, items, ...section } = Astro.props;
+
+/**
+ * Liczba kolumn na szerokim ekranie. Samo `auto-fit` upycha ile się zmieści,
+ * przez co sześć kafli układa się jako 5 + 1 z osieroconym kaflem w drugim
+ * rzędzie. Dzielnik bez reszty daje równe rzędy.
+ */
+const columns = items.length % 3 === 0 ? 3 : items.length % 4 === 0 ? 4 : Math.min(items.length, 4);
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+  <div class="values" style={`--cols: ${columns}`}>
+    {
+      items.map((item) => (
+        <article class="card value reveal">
+          <span class="value__icon">
+            <Icon name={item.icon} size={21} />
+          </span>
+          <h3>{item.title}</h3>
+          {item.body && <p>{item.body}</p>}
+        </article>
+      ))
+    }
+  </div>
+</Section>

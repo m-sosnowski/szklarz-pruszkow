@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import Section from './Section.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  items: {
+    title: string;
+    body?: string | undefined;
+    href?: string | undefined;
+    linkLabel?: string | undefined;
+    image?: ImageMetadata | undefined;
+    imageAlt?: string | undefined;
+  }[];
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, items, ...section } = Astro.props;
+
+/** Kafel bez adresu docelowego to zwykła karta, nie link. */
+const Tag = (href?: string) => (href ? 'a' : 'article');
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+  <div class="offers">
+    {
+      items.map((item) => {
+        const Element = Tag(item.href);
+        return (
+          <Element class="card offer reveal" href={item.href}>
+            {item.image && (
+              <div class="offer__media">
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt ?? ''}
+                  widths={[360, 560, 800]}
+                  sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="offer__body">
+              <h3>{item.title}</h3>
+              {item.body && <p>{item.body}</p>}
+              {item.href && (
+                <span class="link-arrow">
+                  {item.linkLabel ?? 'Zobacz szczegóły'}
+                  <Icon name="arrowRight" size={16} />
+                </span>
+              )}
+            </div>
+          </Element>
+        );
+      })
+    }
+  </div>
+</Section>

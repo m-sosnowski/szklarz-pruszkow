@@ -1,0 +1,21 @@
+---
+import Section from './Section.astro';
+import { renderMarkdown } from '../../lib/markdown';
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  body: string;
+  variant?: 'prose' | 'panel';
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, body, variant = 'prose', ...section } = Astro.props;
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} narrow={variant === 'prose'} {...section}>
+  <div class:list={['prose', 'reveal', variant === 'panel' && 'prose--panel']} set:html={renderMarkdown(body)} />
+</Section>

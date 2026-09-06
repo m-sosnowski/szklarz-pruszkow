@@ -1,0 +1,38 @@
+# Przekierowania Cloudflare Pages.
+#
+# Dlaczego plikiem, a nie opcją `redirects` w astro.config.mjs: przy
+# `output: 'static'` Astro generuje dla przekierowań strony
+# z <meta http-equiv="refresh">, a nie prawdziwy status HTTP. Google
+# traktuje je gorzej niż 301. Cloudflare Pages czyta ten plik na warstwie
+# edge i zwraca właściwe 301.
+#
+# Limit Cloudflare Pages: 2000 reguł statycznych. Używamy 19.
+
+# --- panel CMS -------------------------------------------------------------
+# Przepisanie (status 200), nie przekierowanie — adres w pasku zostaje /admin.
+/admin                      /admin/index.html                200
+
+# --- stare adresy podstron -> nowe -----------------------------------------
+# Stary serwis miał podkreślniki i ukośnik na końcu. Obie wersje muszą
+# trafić w to samo miejsce; Cloudflare dopasowuje ścieżkę dosłownie,
+# więc wariant z ukośnikiem i bez to dwie osobne reguły.
+/uslugi_szklarskie          /uslugi-szklarskie               301
+/uslugi_szklarskie/         /uslugi-szklarskie               301
+/oprawa_obrazow             /oprawa-obrazow                  301
+/oprawa_obrazow/            /oprawa-obrazow                  301
+/piaskowanie/               /piaskowanie                     301
+/oferta/                    /oferta                          301
+/kontakt/                   /kontakt                         301
+
+# --- resztki po WordPressie ------------------------------------------------
+# Kanały RSS, API i katalogi silnika. Google ma je w indeksie od 2022 roku;
+# zamiast 404 dajemy 301 na stronę główną albo na najbliższy tematycznie adres.
+/feed                       /                                301
+/feed/                      /                                301
+/comments/feed              /                                301
+/comments/feed/             /                                301
+/wp-json/*                  /                                301
+/wp-content/*               /                                301
+/wp-includes/*              /                                301
+/wp-admin/*                 /                                301
+/xmlrpc.php                 /                                301

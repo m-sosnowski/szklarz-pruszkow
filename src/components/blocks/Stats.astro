@@ -1,0 +1,41 @@
+---
+import Section from './Section.astro';
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  items: { value: string; label: string }[];
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, items, ...section } = Astro.props;
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+  <dl class="stats reveal">
+    {
+      items.map((item) => (
+        <div class="stat">
+          <dd><b>{item.value}</b></dd>
+          <dt><span>{item.label}</span></dt>
+        </div>
+      ))
+    }
+  </dl>
+</Section>
+
+<style>
+  /* <dl> wymaga par dt/dd; wizualnie liczba ma być nad etykietą,
+     więc odwracamy kolejność zamiast psuć semantykę znacznikami. */
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .stat dd,
+  .stat dt {
+    margin: 0;
+  }
+</style>

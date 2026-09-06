@@ -1,0 +1,42 @@
+{
+  "name": "szklarz-pruszkow",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "fetch-images": "tsx scripts/fetch-images.ts",
+    "optimize-images": "tsx scripts/optimize-images.ts",
+    "contact-sheets": "tsx scripts/contact-sheets.ts",
+    "check-cms-schema": "tsx scripts/check-cms-schema.ts",
+    "check-file-count": "tsx scripts/check-file-count.ts",
+    "verify-urls": "tsx scripts/verify-urls.ts",
+    "prebuild": "tsx scripts/copy-cms.ts",
+    "predev": "tsx scripts/copy-cms.ts",
+    "copy-cms": "tsx scripts/copy-cms.ts",
+    "check-images": "tsx scripts/check-images.ts",
+    "gen-brand": "tsx scripts/gen-brand.ts"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.4",
+    "@sveltia/cms": "^0.205.1",
+    "astro": "^7.2.10",
+    "marked": "^18.0.11",
+    "sharp": "^0.35.4",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.13",
+    "typescript": "^6.0.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

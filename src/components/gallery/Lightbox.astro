@@ -1,0 +1,39 @@
+---
+import Icon from '../ui/Icon.astro';
+
+/**
+ * Podgląd zdjęcia na pełnym ekranie. Dokładany raz na stronę, tylko jeśli
+ * jest na niej choć jedna galeria — obsługę ma w src/scripts/site.ts.
+ */
+---
+
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia">
+  <div class="lightbox__bar">
+    <span data-lightbox-counter></span>
+    <button type="button" data-lightbox-close aria-label="Zamknij podgląd">
+      <Icon name="close" size={20} />
+    </button>
+  </div>
+
+  <button
+    class="lightbox__nav lightbox__nav--prev"
+    type="button"
+    data-lightbox-prev
+    aria-label="Poprzednie zdjęcie"
+  >
+    <Icon name="chevronLeft" size={20} />
+  </button>
+
+  <img data-lightbox-image alt="" />
+
+  <button
+    class="lightbox__nav lightbox__nav--next"
+    type="button"
+    data-lightbox-next
+    aria-label="Następne zdjęcie"
+  >
+    <Icon name="chevronRight" size={20} />
+  </button>
+
+  <p class="lightbox__caption" data-lightbox-caption></p>
+</div>

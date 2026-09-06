@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Model treści opisany jest w dwóch miejscach — ta bramka pilnuje,
+      # żeby config.yml i content.config.ts się nie rozjechały.
+      - name: Zgodność modelu treści
+        run: npm run check-cms-schema
+
+      # Typy + walidacja frontmatteru wszystkich stron przez Zod.
+      - name: Typy i schematy
+        run: npm run check
+
+      # Wszystkie 156 zdjęć z migracji użyte, ścieżki istnieją,
+      # alt-teksty zgodne z data/gallery.json.
+      - name: Zdjęcia i alt-teksty
+        run: npm run check-images
+
+      - name: Build
+        run: npm run build
+
+      # Limity Cloudflare Pages: 20 000 plików, 25 MB na plik.
+      - name: Limity deploymentu
+        run: npm run check-file-count
+
+      # Najważniejsza bramka: każdy stary adres musi zwracać 200 albo 301 → 200,
+      # a każda strona mieć jeden <h1>, canonical i meta description.
+      - name: Stare adresy i higiena SEO
+        run: npm run verify-urls

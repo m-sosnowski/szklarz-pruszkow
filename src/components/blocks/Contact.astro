@@ -1,0 +1,220 @@
+---
+import Section from './Section.astro';
+import Icon from '../ui/Icon.astro';
+import { site } from '../../lib/globals';
+
+/**
+ * Dane kontaktowe i formularz.
+ *
+ * Formularz pojawia się tylko wtedy, gdy jest gdzie wysłać wiadomość:
+ * własny `endpoint` albo klucz Web3Forms w `site.yml`. Bez tego renderujemy
+ * panel z bezpośrednim kontaktem — lepiej pokazać uczciwie telefon i e-mail
+ * niż wystawić pole „Wyślij", które po kliknięciu nic nie robi.
+ *
+ * Mapa jest linkiem, nie ramką `<iframe>`: osadzona mapa Google to ~900 kB
+ * skryptów, trzeci-stronowe ciasteczka i wyłom w CSP — na stronie, na której
+ * i tak każdy zaraz kliknie „prowadź", nie zarabia na siebie.
+ */
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  endpoint?: string;
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, endpoint = '', ...section } = Astro.props;
+
+const action = endpoint || (site.web3formsKey ? 'https://api.web3forms.com/submit' : '');
+const hasForm = action !== '';
+
+const address = site.address;
+const fullAddress = address
+  ? `${address.street}, ${address.postalCode} ${address.city}`
+  : '';
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${site.legalName || site.companyName} ${fullAddress}`,
+)}`;
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+  <div class="contact">
+    <div class="contact__list reveal">
+      <div class="contact__row">
+        <Icon name="phone" size={19} />
+        <div>
+          <b>Telefon</b>
+          <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+        </div>
+      </div>
+
+      <div class="contact__row">
+        <Icon name="mail" size={19} />
+        <div>
+          <b>E-mail</b>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </div>
+
+      {
+        address?.publicOffice && (
+          <div class="contact__row">
+            <Icon name="pin" size={19} />
+            <div>
+              <b>Zakład</b>
+              <a href={mapsUrl} target="_blank" rel="noopener">
+                {address.street}
+                <br />
+                {address.postalCode} {address.city}
+              </a>
+            </div>
+          </div>
+        )
+      }
+
+      {
+        site.openingHours.length > 0 && (
+          <div class="contact__row">
+            <Icon name="clock" size={19} />
+            <div>
+              <b>Godziny otwarcia</b>
+              {site.openingHours.map((entry) => (
+                <span class="contact__hours">
+                  {entry.days}: {entry.hours}
+                </span>
+              ))}
+              <span class="contact__hours contact__hours--off">
+                Sobota i niedziela: nieczynne
+              </span>
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+    {
+      hasForm ? (
+        <form
+          class="form reveal"
+          action={action}
+          method="post"
+          data-contact-form
+          data-mode="ajax"
+        >
+          {site.web3formsKey && !endpoint && (
+            <input type="hidden" name="access_key" value={site.web3formsKey} />
+          )}
+          <input
+            type="hidden"
+            name="subject"
+            value={`Zapytanie ze strony ${site.companyName}`}
+          />
+
+          {/* Pułapka na boty — człowiek tego pola nie widzi i nie wypełni. */}
+          <div class="form__trap" aria-hidden="true">
+            <label for="firma">Nazwa firmy</label>
+            <input id="firma" type="text" name="botcheck" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="imie">Imię i nazwisko</label>
+              <input id="imie" name="Imię" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="telefon">Telefon</label>
+              <input id="telefon" name="Telefon" type="tel" required autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" name="E-mail" type="email" autocomplete="email" />
+          </div>
+
+          <div class="field">
+            <label for="wiadomosc">Czego dotyczy zlecenie?</label>
+            <textarea
+              id="wiadomosc"
+              name="Wiadomość"
+              required
+              placeholder="Np. kabina prysznicowa 90 × 90 cm, szkło 8 mm — proszę o wycenę."
+            />
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn--primary" type="submit">Wyślij zapytanie</button>
+            <a class="btn btn--ghost" href={`tel:${site.phoneHref}`}>
+              <Icon name="phone" size={17} />
+              {site.phone}
+            </a>
+          </div>
+
+          <p class="form__note" data-form-status role="status">
+            Odpowiadamy w godzinach pracy zakładu. Pilne sprawy najszybciej załatwimy
+            telefonicznie.
+          </p>
+        </form>
+      ) : (
+        <div class="card contact__direct reveal">
+          <h3>Najszybciej — telefonicznie</h3>
+          <p>
+            Wycenę kabiny, lustra czy oprawy obrazu robimy od ręki po krótkiej rozmowie.
+            Przy nietypowych kształtach umawiamy pomiar u klienta.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href={`tel:${site.phoneHref}`}>
+              <Icon name="phone" size={17} />
+              {site.phone}
+            </a>
+            <a class="btn btn--ghost" href={`mailto:${site.email}`}>
+              <Icon name="mail" size={17} />
+              Napisz e-mail
+            </a>
+          </div>
+          {
+            address?.publicOffice && (
+              <a class="link-arrow contact__map" href={mapsUrl} target="_blank" rel="noopener">
+                Zobacz dojazd na mapie
+                <Icon name="arrowRight" size={16} />
+              </a>
+            )
+          }
+        </div>
+      )
+    }
+  </div>
+</Section>
+
+<style>
+  .contact__hours {
+    display: block;
+    color: var(--ink);
+    font-weight: 550;
+  }
+  .contact__hours--off {
+    color: var(--muted);
+    font-weight: 450;
+  }
+  .contact__direct {
+    padding: clamp(26px, 3vw, 40px);
+  }
+  .contact__direct p {
+    color: var(--slate);
+    max-width: 46ch;
+  }
+  .contact__map {
+    margin-top: 22px;
+  }
+  [data-form-status][data-state='ok'] {
+    color: var(--accent-700);
+    font-weight: 600;
+  }
+  [data-form-status][data-state='error'] {
+    color: #b4442f;
+    font-weight: 600;
+  }
+</style>

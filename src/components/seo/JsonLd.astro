@@ -1,0 +1,17 @@
+---
+interface Props {
+  schema: Record<string, unknown> | undefined;
+}
+
+const { schema } = Astro.props;
+
+/**
+ * `</script>` w danych rozbiłby tag w locie, a `<!--` otworzyłby komentarz.
+ * Escapujemy oba, zanim JSON trafi do dokumentu.
+ */
+const json = schema
+  ? JSON.stringify(schema).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')
+  : null;
+---
+
+{json && <script type="application/ld+json" is:inline set:html={json} />}

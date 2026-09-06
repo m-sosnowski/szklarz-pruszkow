@@ -1,0 +1,78 @@
+---
+import { navigation, site } from '../../lib/globals';
+import Icon from '../ui/Icon.astro';
+import Logo from '../ui/Logo.astro';
+
+const year = new Date().getFullYear();
+const address = site.address;
+const since = site.foundedYear ? `Na rynku od ${site.foundedYear} roku.` : '';
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__about">
+        <a href="/" class="brand" aria-label={`${site.companyName} — strona główna`}>
+          <Logo size={30} />
+          <span class="brand__text">
+            <span class="brand__name">{site.companyName}</span>
+            <span class="brand__tag">{site.contactPerson}</span>
+          </span>
+        </a>
+
+        <p>{site.tagline}. {since}</p>
+
+        <div class="footer__contact">
+          <a href={`tel:${site.phoneHref}`}>
+            <Icon name="phone" size={16} />
+            {site.phone}
+          </a>
+          <a href={`mailto:${site.email}`}>
+            <Icon name="mail" size={16} />
+            {site.email}
+          </a>
+        </div>
+      </div>
+
+      {
+        navigation.footer.map((column) => (
+          <div>
+            <h4>{column.heading}</h4>
+            <ul>
+              {column.links.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
+      {
+        address?.publicOffice && (
+          <div>
+            <h4>Zakład</h4>
+            <ul>
+              <li>{site.legalName}</li>
+              <li>{address.street}</li>
+              <li>
+                {address.postalCode} {address.city}
+              </li>
+              {site.openingHours.map((entry) => (
+                <li>
+                  {entry.days}: {entry.hours}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="footer__bar">
+      <span>© {year} {site.legalName || site.companyName}</span>
+      <span>Pruszków, Piastów, Brwinów, Ursus, Warszawa i okolice</span>
+    </div>
+  </div>
+</footer>

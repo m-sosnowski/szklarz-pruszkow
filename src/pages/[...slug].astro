@@ -1,0 +1,93 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/layout/Hero.astro';
+import PageHead from '../components/layout/PageHead.astro';
+import Blocks from '../components/blocks/Blocks.astro';
+import Lightbox from '../components/gallery/Lightbox.astro';
+import { isPublished } from '../lib/content';
+import { resolveSeo, stripMarkdown } from '../lib/seo';
+import { faqSchema, serviceSchema, type Crumb } from '../lib/schema';
+
+/**
+ * Wszystkie sześć stron serwisu. Adresy są jednosegmentowe, tak jak
+ * w oryginale — zmieniły się tylko podkreślniki na myślniki
+ * (/uslugi_szklarskie → /uslugi-szklarskie), a stare warianty łapie
+ * 301 z public/_redirects.
+ */
+export const getStaticPaths = (async () => {
+  const pages = await getCollection('pages', isPublished);
+
+  return pages.map((page) => ({
+    // Pusty slug daje `/` — Astro traktuje undefined jako brak segmentu.
+    params: { slug: page.data.slug || undefined },
+    props: { page },
+  }));
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const { data } = page;
+
+const isHome = data.slug === '';
+const pathname = isHome ? '/' : `/${data.slug}`;
+
+const firstText = data.blocks.find((block) => block.type === 'richText');
+
+const seo = resolveSeo({
+  seo: data.seo,
+  title: data.title,
+  fallbackDescription: data.summary ?? (firstText ? stripMarkdown(firstText.body) : undefined),
+  pathname,
+  isHome,
+});
+
+const crumbs: Crumb[] = isHome
+  ? [{ name: 'Strona główna', href: '/' }]
+  : [
+      { name: 'Strona główna', href: '/' },
+      { name: data.title, href: pathname },
+    ];
+
+const schemas = [
+  ...data.blocks.filter((block) => block.type === 'faq').map((block) => faqSchema(block.items)),
+  data.serviceName
+    ? serviceSchema({
+        name: data.serviceName,
+        description: seo.description,
+        pathname,
+      })
+    : undefined,
+];
+
+const hasGallery = data.blocks.some((block) => block.type === 'imageGallery');
+
+const hero = data.hero;
+---
+
+<Base seo={seo} crumbs={crumbs} schemas={schemas}>
+  {
+    hero && hero.variant === 'home' ? (
+      <Hero
+        eyebrow={hero.eyebrow}
+        heading={hero.heading}
+        subheading={hero.subheading}
+        ctaPrimary={hero.ctaPrimary}
+        ctaSecondary={hero.ctaSecondary}
+        stats={hero.stats}
+        collage={hero.collage}
+      />
+    ) : (
+      <PageHead
+        title={hero?.heading ?? data.title}
+        lead={hero?.subheading ?? data.summary}
+        eyebrow={hero?.eyebrow}
+        crumbs={crumbs}
+      />
+    )
+  }
+
+  <Blocks blocks={data.blocks} />
+
+  {hasGallery && <Lightbox />}
+</Base>

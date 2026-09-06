@@ -1,0 +1,40 @@
+---
+import Section from './Section.astro';
+import Icon from '../ui/Icon.astro';
+import { renderMarkdown } from '../../lib/markdown';
+
+/**
+ * FAQ na natywnych `<details>` — rozwija się bez JS-a i jest dostępne
+ * z klawiatury bez ani jednej linijki obsługi.
+ *
+ * Ten sam zestaw pytań trafia do `FAQPage` w JSON-LD (patrz lib/schema.ts).
+ */
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  items: { question: string; answer: string }[];
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, items, ...section } = Astro.props;
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+  <div class="faq reveal">
+    {
+      items.map((item) => (
+        <details>
+          <summary>
+            {item.question}
+            <Icon name="chevronDown" size={19} />
+          </summary>
+          <div class="faq__answer" set:html={renderMarkdown(item.answer)} />
+        </details>
+      ))
+    }
+  </div>
+</Section>

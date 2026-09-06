@@ -1,0 +1,91 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Section from './Section.astro';
+import Icon from '../ui/Icon.astro';
+
+/**
+ * Galeria w układzie masonry (CSS `columns`), bo zdjęcia ze starego serwisu
+ * są w obu orientacjach — siatka o stałych proporcjach kadrowałaby połowę
+ * z nich w połowie.
+ *
+ * Każdy kafel jest linkiem do pełnego pliku: bez JS-a klik po prostu otwiera
+ * zdjęcie, a z JS-em przechwytuje go lightbox.
+ */
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  columns?: '2' | '3' | '4';
+  images: { src: ImageMetadata; alt: string }[];
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, columns = '4', images, ...section } = Astro.props;
+
+// Wersja pełnowymiarowa dla lightboxa — jedna na zdjęcie, generowana
+// przy buildzie, żeby podgląd nie ciągnął oryginału z repo.
+const full = await Promise.all(
+  images.map((item) => getImage({ src: item.src, width: 1400, format: 'webp' })),
+);
+
+/**
+ * Powyżej tego progu galeria startuje zwinięta. 26 kafli w czterech kolumnach
+ * to ponad cztery tysiące pikseli miniatur — na stronie z siedmioma galeriami
+ * nie da się tego przewinąć. Zdjęcia zostają w HTML-u (indeksują się i mają
+ * alt), chowa je dopiero CSS po nadaniu klasy przez skrypt.
+ */
+const FOLD = 12;
+const collapsible = images.length > FOLD;
+
+const sizes =
+  columns === '2'
+    ? '(max-width: 720px) 92vw, 46vw'
+    : columns === '3'
+      ? '(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 31vw'
+      : '(max-width: 720px) 46vw, (max-width: 1100px) 31vw, 23vw';
+---
+
+<Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+  <div
+    class:list={['gallery', `gallery--cols-${columns}`]}
+    data-lightbox-gallery
+    data-collapsible={collapsible ? String(FOLD) : undefined}
+  >
+    {
+      images.map((item, index) => (
+        <a
+          class="gallery__item"
+          href={full[index]!.src}
+          data-lightbox-item
+          data-beyond-fold={collapsible && index >= FOLD ? '' : undefined}
+        >
+          <Image
+            src={item.src}
+            alt={item.alt}
+            widths={[280, 420, 640]}
+            sizes={sizes}
+            loading="lazy"
+          />
+          <span class="gallery__zoom">
+            <Icon name="zoom" size={16} />
+          </span>
+        </a>
+      ))
+    }
+  </div>
+
+  {
+    collapsible && (
+      /* Ukryty do czasu, aż skrypt zwinie galerię — bez JS-a widać wszystkie
+         zdjęcia, więc przycisk nie miałby czego rozwijać. */
+      <div class="gallery-more">
+        <button class="btn btn--ghost" type="button" data-gallery-more hidden>
+          Pokaż wszystkie zdjęcia ({images.length})
+        </button>
+      </div>
+    )
+  }
+</Section>

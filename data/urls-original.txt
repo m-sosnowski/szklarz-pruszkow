@@ -1,0 +1,17 @@
+# Adresy starego serwisu (WordPress). Wejście dla scripts/verify-urls.ts.
+# Każdy z nich musi po przebudowie zwracać 200 albo 301 -> 200.
+#
+# Źródło: https://szklarz.pruszkow.pl/wp-sitemap-posts-page-1.xml
+# Warianty z ukośnikiem na końcu są tu celowo — tak wyglądały adresy
+# kanoniczne oryginału i tak siedzą w indeksie Google.
+/
+/oferta
+/oferta/
+/uslugi_szklarskie
+/uslugi_szklarskie/
+/oprawa_obrazow
+/oprawa_obrazow/
+/piaskowanie
+/piaskowanie/
+/kontakt
+/kontakt/
