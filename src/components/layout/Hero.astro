@@ -45,7 +45,7 @@ const frames = collage.slice(0, 3);
 <section class="hero">
   <Refraction class="hero__refraction" />
 
-  <div class="container hero__inner">
+  <div class:list={['container', 'hero__inner', frames.length === 0 && 'hero__inner--no-collage']}>
     <div>
       {eyebrow && <span class="eyebrow">{eyebrow}</span>}
       <h1>{heading}</h1>

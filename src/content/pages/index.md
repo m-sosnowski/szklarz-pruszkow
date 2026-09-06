@@ -26,13 +26,6 @@ hero:
       label: "wzorów do piaskowania"
     - value: "400+"
       label: "wzorów listew ramiarskich"
-  collage:
-    - src: "/src/assets/images/uslugi/kabina-prysznicowa-08.jpg"
-      alt: "Narożna kabina prysznicowa w łazience na poddaszu"
-    - src: "/src/assets/images/uslugi/szklo-do-kuchni-01.jpg"
-      alt: "Szkło lakierowane w kolorze beżowym nad blatem kuchennym"
-    - src: "/src/assets/images/piaskowanie/wzor-piaskowany-01.jpg"
-      alt: "Lustro z piaskowanym wzorem roślinnym w układzie szachownicy"
 blocks:
   - type: "offerCards"
     eyebrow: "Czym się zajmujemy"

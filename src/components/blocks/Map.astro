@@ -1,0 +1,122 @@
+---
+import Section from './Section.astro';
+import Icon from '../ui/Icon.astro';
+import { site } from '../../lib/globals';
+
+/**
+ * Mapa dojazdu do zakładu. Współrzędne bierzemy z `geo` w site.yml —
+ * z tego samego pola, które trafia do GeoCoordinates w JSON-LD, więc mapa
+ * i dane strukturalne nie mają jak wskazać dwóch różnych miejsc.
+ *
+ * Ramka jest osadzona od razu (bez pośredniego kliknięcia) i ma
+ * `loading="lazy"` — przeglądarka ładuje ją dopiero, gdy zbliża się
+ * do widoku, więc odwiedziny, które nie schodzą do sekcji kontaktu,
+ * nie ściągają jej wcale.
+ */
+
+interface Props {
+  eyebrow?: string | undefined;
+  heading?: string | undefined;
+  intro?: string | undefined;
+  zoom?: number;
+  background?: 'paper' | 'mist' | 'deep' | 'glass';
+  tight?: boolean;
+  anchor?: string | undefined;
+}
+
+const { eyebrow, heading, intro, zoom = 16, ...section } = Astro.props;
+
+const geo = site.geo;
+const address = site.address;
+const fullAddress = address
+  ? `${address.street}, ${address.postalCode} ${address.city}`
+  : '';
+const label = [site.legalName || site.companyName, fullAddress].filter(Boolean).join(', ');
+
+// Bez współrzędnych nie ma czego pokazać — blok znika zamiast rysować
+// pustą ramkę albo mapę wyśrodkowaną na środku oceanu.
+const coords = geo ? `${geo.lat},${geo.lng}` : '';
+
+const embedUrl = geo
+  ? `https://www.google.com/maps?q=${encodeURIComponent(coords)}&z=${zoom}&hl=pl&output=embed`
+  : '';
+const routeUrl = geo
+  ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(coords)}`
+  : '';
+---
+
+{
+  geo && (
+    <Section eyebrow={eyebrow} heading={heading} intro={intro} {...section}>
+      <div class="map reveal">
+        <iframe
+          class="map__frame"
+          src={embedUrl}
+          title={`Mapa dojazdu — ${label}`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        />
+      </div>
+
+      <p class="map__caption">
+        {fullAddress && <span>{fullAddress}. </span>}
+        Na pomiar u klienta umawiamy się telefonicznie: <a href={`tel:${site.phoneHref}`}>
+          {site.phone}
+        </a>.
+        <a class="link-arrow map__route" href={routeUrl} target="_blank" rel="noopener">
+          <Icon name="truck" size={15} />
+          Wyznacz trasę
+        </a>
+      </p>
+    </Section>
+  )
+}
+
+<style>
+  .map {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--mist);
+    aspect-ratio: 16 / 9;
+  }
+  @media (max-width: 720px) {
+    .map {
+      aspect-ratio: 4 / 3;
+    }
+  }
+  .map__frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .map__caption {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 16px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .map__caption a {
+    color: var(--accent-700);
+    font-weight: 600;
+  }
+  .map__route {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .section--deep .map,
+  .section--glass .map {
+    border-color: var(--line-dark);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .section--deep .map__caption,
+  .section--glass .map__caption {
+    color: #c3d6da;
+  }
+</style>

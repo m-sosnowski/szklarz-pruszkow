@@ -24,6 +24,10 @@ address:
   # true = zakład stacjonarny z adresem otwartym dla klientów. Steruje tym,
   # czy renderujemy pełny adres pocztowy i czy trafia on do JSON-LD.
   publicOffice: true
+# Współrzędne zakładu — zasilają mapę na stronie kontaktu i pole geo w JSON-LD.
+geo:
+  lat: 52.16024106336074
+  lng: 20.818115581306575
 openingHours:
   - days: Poniedziałek – Piątek
     hours: 10:00 – 17:00

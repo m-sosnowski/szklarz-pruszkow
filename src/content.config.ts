@@ -210,6 +210,19 @@ const blocks = (image: ImageFn) =>
           intro: z.string().optional(),
         }),
 
+        /**
+         * Mapa dojazdu. Współrzędne są w `site.yml` (pole `geo`) — blok
+         * ustawia tylko oprawę i przybliżenie, żeby adres zakładu nie miał
+         * jak rozjechać się między mapą a danymi strukturalnymi.
+         */
+        z.object({
+          type: z.literal('map'),
+          ...sectionShape,
+          heading: z.string().optional(),
+          intro: z.string().optional(),
+          zoom: z.number().int().min(1).max(21).default(16),
+        }),
+
         z.object({
           type: z.literal('cta'),
           heading: z.string(),

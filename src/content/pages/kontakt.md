@@ -19,8 +19,15 @@ blocks:
       Dzwoń w godzinach pracy zakładu. Jeśli nie odbieramy, jesteśmy przy maszynie
       albo na pomiarze u klienta — oddzwonimy.
 
-  - type: "steps"
+  - type: "map"
     background: "mist"
+    eyebrow: "Mapa"
+    heading: "Gdzie nas znaleźć"
+    intro: >-
+      Zakład przy ul. Andrzeja 26 w Pruszkowie.
+    zoom: 17
+
+  - type: "steps"
     eyebrow: "Zanim zadzwonisz"
     heading: "Co warto mieć pod ręką"
     intro: >-
@@ -40,6 +47,7 @@ blocks:
           To one najczęściej decydują o cenie.
 
   - type: "areaServed"
+    background: "mist"
     eyebrow: "Dojazd"
     heading: "Gdzie dojeżdżamy z pomiarem i montażem"
     intro: >-

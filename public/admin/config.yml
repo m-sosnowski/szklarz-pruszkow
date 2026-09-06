@@ -370,6 +370,29 @@ blocks_field: &blocks_field
         - { label: Nagłówek, name: heading, widget: string, required: false }
         - { label: Wprowadzenie, name: intro, widget: text, required: false }
 
+    - label: Mapa dojazdu
+      name: map
+      widget: object
+      hint: >-
+        Punkt na mapie bierzemy ze współrzędnych w „Ustawienia serwisu → Dane firmy".
+        Bez nich blok się nie pokaże.
+      fields:
+        - *section_eyebrow
+        - *section_anchor
+        - *section_background
+        - *section_tight
+        - { label: Nagłówek, name: heading, widget: string, required: false }
+        - { label: Wprowadzenie, name: intro, widget: text, required: false }
+        - label: Przybliżenie
+          name: zoom
+          widget: number
+          required: false
+          default: 16
+          value_type: int
+          min: 1
+          max: 21
+          hint: 16 pokazuje ulicę z sąsiedztwem, 18 — sam budynek.
+
     - label: Wezwanie do kontaktu
       name: cta
       widget: object

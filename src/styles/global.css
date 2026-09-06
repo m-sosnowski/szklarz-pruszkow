@@ -525,6 +525,11 @@ strong {
   align-items: center;
   padding: clamp(56px, 8vw, 116px) 0 clamp(56px, 8vw, 108px);
 }
+/* Bez kolażu tekst dostaje całą szerokość zamiast pustej kolumny po prawej. */
+.hero__inner--no-collage {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+}
 @media (max-width: 940px) {
   .hero__inner {
     grid-template-columns: 1fr;

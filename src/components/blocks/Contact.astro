@@ -11,9 +11,8 @@ import { site } from '../../lib/globals';
  * panel z bezpośrednim kontaktem — lepiej pokazać uczciwie telefon i e-mail
  * niż wystawić pole „Wyślij", które po kliknięciu nic nie robi.
  *
- * Mapa jest linkiem, nie ramką `<iframe>`: osadzona mapa Google to ~900 kB
- * skryptów, trzeci-stronowe ciasteczka i wyłom w CSP — na stronie, na której
- * i tak każdy zaraz kliknie „prowadź", nie zarabia na siebie.
+ * Adres jest tu linkiem do Google Maps, nie ramką `<iframe>` — samą mapę
+ * osadza osobny blok `map` na stronie kontaktu.
  */
 
 interface Props {

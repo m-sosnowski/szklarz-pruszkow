@@ -11,6 +11,7 @@ import ImageGallery from './ImageGallery.astro';
 import SpecTable from './SpecTable.astro';
 import Faq from './Faq.astro';
 import AreaServed from './AreaServed.astro';
+import Map from './Map.astro';
 import Cta from './Cta.astro';
 import Contact from './Contact.astro';
 
@@ -165,6 +166,18 @@ const { blocks } = Astro.props;
             eyebrow={block.eyebrow}
             heading={block.heading}
             intro={block.intro}
+            background={block.background}
+            tight={block.tight}
+            anchor={block.anchor}
+          />
+        );
+      case 'map':
+        return (
+          <Map
+            eyebrow={block.eyebrow}
+            heading={block.heading}
+            intro={block.intro}
+            zoom={block.zoom}
             background={block.background}
             tight={block.tight}
             anchor={block.anchor}

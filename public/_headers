@@ -14,6 +14,9 @@
 # - data: w `connect-src`: Sveltia czyta własne logo (data: URI) fetchem.
 # - githubstatus.com: panel ostrzega o awarii GitHuba. Zapytanie jest
 #   w try/catch, więc brak zgody tylko wycisza ostrzeżenie.
+# - google.com w `frame-src`: osadzona mapa dojazdu na /kontakt. Ramka
+#   powstaje dopiero po kliknięciu „Pokaż mapę", ale CSP musi ją dopuszczać
+#   z góry — bez tego iframe zostaje zablokowany i pole zostaje puste.
 # - api.web3forms.com w `connect-src` i `form-action`: tam trafia formularz
 #   kontaktowy. Oba wpisy są potrzebne — fetch przy działającym JS,
 #   zwykły POST formularza jako zapas.
@@ -23,7 +26,7 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; manifest-src 'self' blob:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' data: https://api.github.com https://unpkg.com https://www.githubstatus.com https://api.web3forms.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; manifest-src 'self' blob:; frame-src https://www.google.com https://maps.google.com; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' data: https://api.github.com https://unpkg.com https://www.githubstatus.com https://api.web3forms.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com
 
 # Assety Astro mają hash w nazwie — mogą leżeć w cache na zawsze.
 /_astro/*
